@@ -3,6 +3,8 @@ import turicreate as tc
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.sparse import csr_matrix
+from flask_frozen import Freezer
+
 
 import json
 import sys
