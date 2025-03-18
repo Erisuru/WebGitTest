@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Similarity (K-Means K=3)</title>
+  </head>
+  <body>
+    <h1>Document Similarity (K-Means K=3)</h1>
+    <button onclick="queryRandomDocumentKMeans()">Query Random Document</button>
+    <div id="query-doc">
+      {% if query_doc %}
+        <h2>Random Document: {{ query_doc.title|join(' ') }}</h2>
+        <p>Content:{{ query_doc.content|join(' ') }}</p>
+        <p>Cluster Documents:</p>
+        <ul>
+          {% for doc in cluster_docs %}
+            <li>
+              <button onclick="showContent('{{ loop.index }}')"> {{ doc.title }} </button>
+              <div id="{{ loop.index }}" style="display: none;">{{ doc.content }}</div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <button onclick="location.href='/'">Back to Index</button>
+
+    <script>
+      function queryRandomDocumentKMeans() {
+        window.location.href = '/get_random_document_kmeans';
+      }
+
+      function showContent(index) {
+        var elem = document.getElementById(index);
+        if (elem.style.display === 'none') {
+          elem.style.display = 'block';
+        } else {
+          elem.style.display = 'none';
+        }
+      }
+    </script>
+  </body>
+</html>
